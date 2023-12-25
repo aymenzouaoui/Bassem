@@ -1,14 +1,13 @@
 package com.example.demo.repository;
 
 import com.example.demo.models.Tache;
-import com.example.demo.models.user;
+import com.example.demo.models.User;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import java.time.LocalDate;
-import java.util.List;
-
-public interface UserRepository extends MongoRepository<user, String> {
-    // Define custom queries if needed
 
 
+public interface UserRepository extends MongoRepository<User, String> {
+    User findByCin(String cin);
 }
+
