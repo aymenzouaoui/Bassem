@@ -18,7 +18,8 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public User loginUser(@RequestParam String cin, @RequestParam String password) {
-        return userService.loginUser(cin, password);
+    public User loginUser(@RequestBody User user) {
+        // Update your UserService to accept User object for login
+        return userService.loginUser(user.getCin(), user.getPassword());
     }
 }
