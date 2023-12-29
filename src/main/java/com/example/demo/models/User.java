@@ -5,9 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-// Assuming you have an enum for roles
 
-// User class
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,4 +20,5 @@ public class User {
     private Role role;
     private String password;
     private String phone;
+    private List<Projet> projets;
 }
