@@ -1,25 +1,47 @@
 package com.example.demo.controllers;
 
-import com.example.demo.models.User;
+import com.example.demo.models.user;
 import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/users")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
-    @PostMapping("/register")
-    public User registerUser(@RequestBody User user) {
-        return userService.registerUser(user);
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
-    @PostMapping("/login")
-    public User loginUser(@RequestBody User user) {
-        // Update your UserService to accept User object for login
-        return userService.loginUser(user.getCin(), user.getPassword());
+    @GetMapping("/getAll")
+    public List<user> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
+    @GetMapping("/getById{id}")
+    public Optional<user> getUserById(@PathVariable String id) {
+        return userService.getUserById(id);
+    }
+
+    @PostMapping("/create")
+    public user createUser(@RequestBody user User) {
+        return userService.createUser(User);
+    }
+
+    @PutMapping("/update{id}")
+    public user updateUser(@PathVariable String id, @RequestBody user updatedUser) {
+        return userService.updateUser(id, updatedUser);
+    }
+
+    @DeleteMapping("/delete{id}")
+    public void deleteUser(@PathVariable String id) {
+        userService.deleteUser(id);
     }
 }
+
